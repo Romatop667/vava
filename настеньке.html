@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Настеньки</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .box {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        h1 {
+            color: #4a2b7a;
+            font-size: 28px;
+            margin: 0 0 30px;
+            line-height: 1.4;
+        }
+        button {
+            padding: 18px 50px;
+            margin: 10px;
+            border: none;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .yes { 
+            background: #4CAF50; 
+            color: white;
+        }
+        .no { 
+            background: #f44336; 
+            color: white;
+        }
+        .text { 
+            font-size: 24px; 
+            color: #f44336; 
+            margin: 20px 0; 
+            min-height: 80px;
+            font-weight: bold;
+        }
+        .big { 
+            font-size: 26px; 
+            color: #4CAF50; 
+            margin-top: 30px;
+            line-height: 1.4;
+            font-weight: bold;
+            animation: heart 1.5s infinite;
+        }
+        @keyframes heart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .hide { display: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>❤️ Настенька ты готова ко мне вернуться? ❤️</h1>
+        
+        <div id="btns">
+            <button class="yes" onclick="yes()">ДА</button>
+            <button class="no" onclick="no()">НЕТ</button>
+        </div>
+
+        <div id="msg" class="text"></div>
+        <div id="final" class="big hide">
+            ❤️ я очень рад что ты сделала свой осознанный выбор ❤️<br>
+            я тебя безумно люблю
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const errors = [
+            "❌ ОШИБКА! Попробуй еще раз",
+            "❌ НЕВЕРНО! Нажми ДА",
+            "❌ СИСТЕМНАЯ ОШИБКА! Только ДА",
+            "❌ ДОСТУП ЗАПРЕЩЕН! Жму ДА",
+            "❌ КРИТИЧЕСКАЯ ОШИБКА! ДА, ДА, ДА!",
+            "❌ СБОЙ! Выбери правильный ответ",
+            "❌ ОШИБКА 404 - кнопка НЕТ не работает",
+            "❌ НЕПРАВИЛЬНО! Сердце говорит ДА"
+        ];
+
+        function no() {
+            if (count < errors.length) {
+                document.getElementById('msg').innerText = errors[count];
+                count++;
+            } else {
+                document.getElementById('msg').innerText = "❌ БЕСКОНЕЧНАЯ ОШИБКА! ТОЛЬКО ДА!!!";
+            }
+        }
+
+        function yes() {
+            document.getElementById('btns').style.display = 'none';
+            document.getElementById('msg').style.display = 'none';
+            document.getElementById('final').classList.remove('hide');
+        }
+    </script>
+</body>
+</html>
